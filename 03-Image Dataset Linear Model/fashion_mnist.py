@@ -23,7 +23,7 @@ tr_targets = fmnist.targets
 
 class CustomDataset(Dataset):
     def __init__(self, x, y):
-        x = x.float()
+        x = x.float()/255        # Normalisation
         x = x.view(-1, 28*28)
         self.x, self.y = x, y
 
