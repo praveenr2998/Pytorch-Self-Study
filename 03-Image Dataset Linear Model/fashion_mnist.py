@@ -69,7 +69,7 @@ def train_batch(x, y, model, opt, loss_fn):
     batch_loss.backward()
     optimizer.step()
     optimizer.zero_grad()
-    return batch_loss.item()
+    return batch_loss.item()  # moves value back to CPU and converts it to a plain python number
 
 
 
@@ -77,7 +77,7 @@ def train_batch(x, y, model, opt, loss_fn):
 def accuracy(x, y, model):
     model.eval()
     prediction = model(x)
-    max_values, argmaxes = prediction.max(-1)
+    max_values, argmaxes = prediction.max(-1)   # max value for each image and corresponding index (each batch - count willbe equal to batch size)
     is_correct = argmaxes == y
     return is_correct.cpu().numpy().tolist()
 
